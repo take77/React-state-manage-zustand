@@ -1,24 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import { css } from '@emotion/react';
+import Typography from '@mui/material/Typography';
+
+import EmailField from '../src/components/EmailField';
+import PasswordField from '../src/components/PasswordField';
+import SubmitButton from '../src/components/SubmitButton';
+
+import { useFieldsStore } from './stores/fieldsStore';
+
+const contentsBox = css({
+  margin: '3rem auto',
+  width: '90%',
+  maxWidth: '720px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.5rem'
+});
+
 function App() {
+  const {
+    email,
+    password
+  } = useFieldsStore();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div css={contentsBox}>
+      <Typography>メールアドレス：{email}</Typography>
+      <Typography>パスワード：{password}</Typography>
+      <EmailField />
+      <PasswordField />
+      <SubmitButton />
     </div>
   );
 }
